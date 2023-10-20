@@ -1,0 +1,32 @@
+{
+    "OLTs":
+    [
+        {
+            "status": 1,
+            "OltName": "OLTPon 19",
+            "Armario": "POP MatrizA",
+            "PowerdB": "+5dBm",
+            "maxClients": 64,
+            "ipAddress":"127.0.0.1",
+            "Config": ""
+        },
+        {
+            "status": 0,
+            "OltName": "OLTPon 18",
+            "Armario": "POP MatrizB",
+            "PowerdB": "+4dBm",
+            "maxClients": 128,
+            "ipAddress": "127.0.0.2",
+            "Config": ""
+        },
+        {
+            "status": 1,
+            "OltName": "OLTPon 17",
+            "Armario": "POP MatrizC",
+            "PowerdB": "+3dBm",
+            "maxClients": 256,
+            "ipAddress": "127.0.0.3",
+            "Config": ""
+        }
+    ]
+}
