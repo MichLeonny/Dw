@@ -11,7 +11,7 @@ async function main(){
 }
 
 async function viewData(){
-    const data = await fetch('http://143.208.202.11:3000/OLTs');
+    const data = await fetch('http://localhost:3000/OLTs');
     return await data.json();
     
 
