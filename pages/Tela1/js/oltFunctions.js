@@ -2,15 +2,58 @@ import states from './states.js'
 
 async function checkSlots(ip, oltID){
     const url = `${ip}` + `/${oltID.OltID}`
-    console.log(url)
     const response = await fetch(url)
     return await response.json();
    
 }
 
+function add_slots(olt, slots){
+    
+  let tableSecondaryHead = `<tr>
+    <td colspan="10" class="hiddenRow">
+      <div class="collapse multi-collapse" id="${olt.OltID}">
+        <table class="table table-bordered table-sm table-hover text-center">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Slot/Pons</th>
+              <th>ONU Discovery</th>
+              <th>ONU's Provisioned</th>
+              <th>ONU's Online</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+    <tbody>\n`
+  
+  let tableSecondaryTbody = ''
+  for (const slot of slots){
+    tableSecondaryTbody += `<tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+            <td>${slot.status}</td>
+            <td>${slot.slot}</td>
+            <td>${slot.OnuDiscovery}</td>
+            <td>${slot.OnuProvisioned}</td>
+            <td>${slot.OnuOnline}</td>
+            <td>
+              <span id="configIcon" class="clickIcon">
+                <a>
+                  <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
+                </a>
+            </span>
+      </td>`
+  }
+  tableSecondaryHead += `${tableSecondaryTbody}\n
+                        </tbody>\n
+                      </table>\n
+                    </div>\n
+                  </td>
+                </tr>`
 
-async function add_olt(olt){
+  return tableSecondaryHead;
+}
 
+async function add_olt(olt, slots){
+    
+    const oltSlots = add_slots(olt, slots);
     let status = olt.status;
     const name = olt.OltName;
     const ip = olt.ipAddress;
@@ -28,7 +71,7 @@ async function add_olt(olt){
         status = 'statusOffline';
     }
 
-    const linha = `<tr id="${status}-${ip}">
+    let linha = `<tr id="${status}-${ip}">
                         <th scope="row">
                         <div class="${status}" data-bs-toggle="collapse" href="#${id}" role="button" aria-expanded="false" aria-controls="${status}-${ip}" ></div>
                         </th>
@@ -50,101 +93,10 @@ async function add_olt(olt){
                                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalRemove">
                                 <iconify-icon icon="bx:trash" width="27" height="29"></iconify-icon>
                             </span>
-                        </td>
-                        <tr>
-                      <td colspan="10" class="hiddenRow">
-                        <div class="collapse multi-collapse" id="${id}">
-                          <table class="table table-bordered table-sm table-hover text-center">
-                            <thead>
-                              <tr>
-                                <th>Status</th>
-                                <th>Slot/Pons</th>
-                                <th>ONU Discovery</th>
-                                <th>ONU's Provisioned</th>
-                                <th>ONU's Online</th>
-                                <th>Options</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
-                                <td>Online </td>
-                                <td>0/19</td>
-                                <td>1 </td>
-                                <td>78</td>
-                                <td>24</td>
-                                <td>
-                                  <span id="configIcon" class="clickIcon">
-                                    <a>
-                                      <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
-                                    </a>
-                                </span>
-                                </td>
-                              </tr>
-                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
-                                <td>Online </td>
-                                <td>0/18</td>
-                                <td>0</td>
-                                <td>102</td>
-                                <td>94</td>
-                                <td>
-                                  <span id="configIcon" class="clickIcon">
-                                    <a>
-                                      <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
-                                    </a>
-                                </span>
-                                </td>
-                              </tr>
-                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
-                                <td>Online </td>
-                                <td>0/17</td>
-                                <td>0 </td>
-                                <td>85</td>
-                                <td>32</td>
-                                <td>
-                                  <span id="configIcon" class="clickIcon">
-                                    <a>
-                                      <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
-                                    </a>
-                                </span>
-                                </td>
-                              </tr>
-                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
-                                <td>Online </td>
-                                <td>0/16</td>
-                                <td>2</td>
-                                <td>90</td>
-                                <td>78</td>
-                                <td>
-                                  <span id="configIcon" class="clickIcon">
-                                    <a>
-                                      <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
-                                    </a>
-                                </span>
-                                </td>
-                              </tr>
-                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
-                                <td>Unrecheable</td>
-                                <td>0/15</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                              </tr>
-                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
-                                <td>Unrecheable</td>
-                                <td>0/14</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </td>
-                    </tr>
-                    </tr>`
+                        </td>`
 
+    linha += `\n ${oltSlots}
+              </tr>`
     
     const tabela = document.querySelector('table tbody');
     tabela.insertAdjacentHTML('beforeend', linha);

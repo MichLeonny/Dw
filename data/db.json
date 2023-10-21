@@ -48,23 +48,23 @@
         {
             "slot":	"0/18",
             "status": 1,
-            "OnuDiscovery": 1,
-            "OnuProvisioned": 78,
-            "OnuOnline": 24,	
+            "OnuDiscovery": 0,
+            "OnuProvisioned": 200,
+            "OnuOnline": 100,	
             "Options": ""
         },    
         {
             "slot":	"0/17",
             "status": 1,
             "OnuDiscovery": 1,
-            "OnuProvisioned": 78,
-            "OnuOnline": 24,	
+            "OnuProvisioned": 500,
+            "OnuOnline": 350,	
             "Options": ""
         },
         {
             "slot":	"0/16",
             "status": 1,
-            "OnuDiscovery": 1,
+            "OnuDiscovery": 0,
             "OnuProvisioned": 78,
             "OnuOnline": 24,	
             "Options": ""
@@ -127,8 +127,8 @@
             "slot":	"0/10",
             "status": 0,
             "OnuDiscovery": "-",
-            "OnuProvisioned": "50",
-            "OnuOnline": "0",	
+            "OnuProvisioned": 50,
+            "OnuOnline": 0,	
             "Options": "-"
         },
         {

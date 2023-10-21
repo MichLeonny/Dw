@@ -8,11 +8,8 @@ async function main(ip){
         const status = Status.checkStatus(olt.status);
         if ( status === 1){
             const slots = await oltFunction.checkSlots(ip, olt);
-            console.log(olt)
-            console.log(slots);
-            oltFunction.add_olt(olt);
-        } else {
-            
+            oltFunction.add_olt(olt,slots);
+        } else {       
         }
     }
     
