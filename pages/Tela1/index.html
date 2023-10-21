@@ -27,17 +27,20 @@
                   <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Menu
+                        UserLogged
                       </a>
                       <ul class="dropdown-menu">
                         <li>
-                          <a class="dropdown-item" href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#configModal">Add OLT</a>
+                          <a class="btn btn-light d-flex justify-content-center" href="#" data-bs-toggle="modal" data-bs-target="#configModal">Adicionar OLT</a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
-                        <li>
-                          <a class="dropdown-item fw-bold text-end" href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#configModal">Setup</a>
+                        <li><a class="d-flex justify-content-center" >
+                              <div>
+                                <button type="button" class="btn btn-outline-secondary" id="setupButton">Setup</button>
+                                <button type="button" class="btn btn-outline-danger" id="logoutButton">Logout</button>
+                              </div>
+                            </a>
                         </li>
-                        <li><a class="dropdown-item fw-bold text-danger text-end" href="../../index.html">Logout</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -48,7 +51,7 @@
           </div>
 
           <div class="container" id="bodyList">
-            <table class="table table-hover text-center">
+            <table class="table table-responsive table-hover btn-light text-center">
               <thead>
                 <tr>
                   <th scope="col">Status</th>
@@ -64,7 +67,8 @@
               <tbody>
                 <!-- <tr>
                   <th scope="row">
-                    <div id="status-ip" class="statusOnline"></div>
+                    <div id="status-ip" class="statusOnline" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">            
+                    </div>
                   </th>
                   <td>OLTPon 19</td>
                   <td>POP MatrizA</td>
@@ -84,6 +88,98 @@
                       <iconify-icon icon="bx:trash" width="27" height="29"></iconify-icon>
                     </span>
                   </td>
+                    <tr>
+                      <td colspan="10" class="hiddenRow">
+                        <div class="collapse multi-collapse" id="multiCollapseExample1">
+                          <table class="table table-bordered table-sm table-hover text-center">
+                            <thead>
+                              <tr>
+                                <th>Status</th>
+                                <th>Slot/Pons</th>
+                                <th>ONU Discovery</th>
+                                <th>ONU's Provisioned</th>
+                                <th>ONU's Online</th>
+                                <th>Options</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+                                <td>Online </td>
+                                <td>0/19</td>
+                                <td>1 </td>
+                                <td>78</td>
+                                <td>24</td>
+                                <td>
+                                  <span id="configIcon" class="clickIcon">
+                                    <a>
+                                      <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
+                                    </a>
+                                </span>
+                                </td>
+                              </tr>
+                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+                                <td>Online </td>
+                                <td>0/18</td>
+                                <td>0</td>
+                                <td>102</td>
+                                <td>94</td>
+                                <td>
+                                  <span id="configIcon" class="clickIcon">
+                                    <a>
+                                      <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
+                                    </a>
+                                </span>
+                                </td>
+                              </tr>
+                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+                                <td>Online </td>
+                                <td>0/17</td>
+                                <td>0 </td>
+                                <td>85</td>
+                                <td>32</td>
+                                <td>
+                                  <span id="configIcon" class="clickIcon">
+                                    <a>
+                                      <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
+                                    </a>
+                                </span>
+                                </td>
+                              </tr>
+                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+                                <td>Online </td>
+                                <td>0/16</td>
+                                <td>2</td>
+                                <td>90</td>
+                                <td>78</td>
+                                <td>
+                                  <span id="configIcon" class="clickIcon">
+                                    <a>
+                                      <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
+                                    </a>
+                                </span>
+                                </td>
+                              </tr>
+                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+                                <td>Unrecheable</td>
+                                <td>0/15</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                              </tr>
+                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+                                <td>Unrecheable</td>
+                                <td>0/14</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
                 </tr>
                 <tr>
                   <th scope="row">

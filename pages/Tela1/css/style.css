@@ -16,6 +16,9 @@ body{
     flex-direction: column;
     align-items: center;
 }
+.hiddenRow {
+    padding: 0 !important;
+}
 h4{
     text-align: center;
     background-color: white;

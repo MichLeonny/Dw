@@ -1,26 +1,36 @@
 import states from './states.js'
 
-function add_olt(data){
+async function checkSlots(ip, oltID){
+    const url = `${ip}` + `/${oltID.OltID}`
+    console.log(url)
+    const response = await fetch(url)
+    return await response.json();
+   
+}
 
-    let status = data.status;
-    const name = data.OltName;
-    const ip = data.ipAddress;
-    const armario = data.Armario;
-    const powerdb = data.PowerdB;
-    const maxclients = data.maxClients;
+
+async function add_olt(olt){
+
+    let status = olt.status;
+    const name = olt.OltName;
+    const ip = olt.ipAddress;
+    const armario = olt.Armario;
+    const powerdb = olt.PowerdB;
+    const maxclients = olt.maxClients;
     let config = ''
+    const id = olt.OltID;
 
     const checkStatus = states.checkStatus(status);
 
     if (checkStatus == 1){
-        status = 'statusOnline'
+        status = 'statusOnline';
     } else {
-        status = 'statusOffline'
+        status = 'statusOffline';
     }
 
     const linha = `<tr id="${status}-${ip}">
                         <th scope="row">
-                        <div class="${status}"></div>
+                        <div class="${status}" data-bs-toggle="collapse" href="#${id}" role="button" aria-expanded="false" aria-controls="${status}-${ip}" ></div>
                         </th>
                     
                         <td>${name}</td>
@@ -41,6 +51,98 @@ function add_olt(data){
                                 <iconify-icon icon="bx:trash" width="27" height="29"></iconify-icon>
                             </span>
                         </td>
+                        <tr>
+                      <td colspan="10" class="hiddenRow">
+                        <div class="collapse multi-collapse" id="${id}">
+                          <table class="table table-bordered table-sm table-hover text-center">
+                            <thead>
+                              <tr>
+                                <th>Status</th>
+                                <th>Slot/Pons</th>
+                                <th>ONU Discovery</th>
+                                <th>ONU's Provisioned</th>
+                                <th>ONU's Online</th>
+                                <th>Options</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+                                <td>Online </td>
+                                <td>0/19</td>
+                                <td>1 </td>
+                                <td>78</td>
+                                <td>24</td>
+                                <td>
+                                  <span id="configIcon" class="clickIcon">
+                                    <a>
+                                      <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
+                                    </a>
+                                </span>
+                                </td>
+                              </tr>
+                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+                                <td>Online </td>
+                                <td>0/18</td>
+                                <td>0</td>
+                                <td>102</td>
+                                <td>94</td>
+                                <td>
+                                  <span id="configIcon" class="clickIcon">
+                                    <a>
+                                      <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
+                                    </a>
+                                </span>
+                                </td>
+                              </tr>
+                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+                                <td>Online </td>
+                                <td>0/17</td>
+                                <td>0 </td>
+                                <td>85</td>
+                                <td>32</td>
+                                <td>
+                                  <span id="configIcon" class="clickIcon">
+                                    <a>
+                                      <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
+                                    </a>
+                                </span>
+                                </td>
+                              </tr>
+                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+                                <td>Online </td>
+                                <td>0/16</td>
+                                <td>2</td>
+                                <td>90</td>
+                                <td>78</td>
+                                <td>
+                                  <span id="configIcon" class="clickIcon">
+                                    <a>
+                                      <iconify-icon icon="vscode-icons:file-type-light-config" width="15" height="15"></iconify-icon>
+                                    </a>
+                                </span>
+                                </td>
+                              </tr>
+                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+                                <td>Unrecheable</td>
+                                <td>0/15</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                              </tr>
+                              <tr data-toggle="collapse"  class="accordion-toggle" data-target="#demo10">
+                                <td>Unrecheable</td>
+                                <td>0/14</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
                     </tr>`
 
     
@@ -82,4 +184,5 @@ function remove_olt(rmdata){
 
 }
 
-export default { add_olt, remove_olt };
+
+export default { add_olt, remove_olt, checkSlots };

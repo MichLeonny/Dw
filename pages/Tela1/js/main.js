@@ -1,20 +1,31 @@
 import oltFunction from './oltFunctions.js'
+import Status from './states.js'
 
-async function main(){
-    const OLTS = await viewData()
+async function main(ip){
+    const OLTS = await viewData(ip)
 
-    for (const pon of OLTS) {
-        oltFunction.add_olt(pon);
+    for (const olt of OLTS) {
+        const status = Status.checkStatus(olt.status);
+        if ( status === 1){
+            const slots = await oltFunction.checkSlots(ip, olt);
+            console.log(olt)
+            console.log(slots);
+            oltFunction.add_olt(olt);
+        } else {
+            
+        }
     }
     
     window.deleteOlt = oltFunction.remove_olt;
 }
 
-async function viewData(){
-    const data = await fetch('http://localhost:3000/OLTs');
+async function viewData(ip){
+    const url = `${ip}` + '/OLTs';
+    const data = await fetch(url);
     return await data.json();
     
 
 }
 
-await main()
+const ipDB = 'http://143.208.202.11:3000'
+await main(ipDB)
