@@ -51,55 +51,57 @@ function add_slots(olt, slots){
   return tableSecondaryHead;
 }
 
-async function add_olt(olt, slots){
+async function add_olt(ipDB, olt){
+  
+  const name = olt.OltName;
+  const ip = olt.ipAddress;
+  const armario = olt.Armario;
+  const powerdb = olt.PowerdB;
+  const maxclients = olt.maxClients;
+  let config = ''
+  const id = olt.OltID;
+  let statusClass = ''
+  let rowSlots = ''
+  
+  if (states.checkStatus(olt.status) === 1){
+    const sloters = await checkSlots(ipDB, olt);
+    const oltSlots = add_slots(olt, sloters);
+    statusClass = 'statusOnline';
     
-    const oltSlots = add_slots(olt, slots);
-    let status = olt.status;
-    const name = olt.OltName;
-    const ip = olt.ipAddress;
-    const armario = olt.Armario;
-    const powerdb = olt.PowerdB;
-    const maxclients = olt.maxClients;
-    let config = ''
-    const id = olt.OltID;
-
-    const checkStatus = states.checkStatus(status);
-
-    if (checkStatus == 1){
-        status = 'statusOnline';
-    } else {
-        status = 'statusOffline';
+    rowSlots = `\n ${oltSlots}
+                  </tr>`
+                  
+    } else{
+      statusClass = 'statusOffline';
     }
-
-    let linha = `<tr id="${status}-${ip}">
-                        <th scope="row">
-                        <div class="${status}" data-bs-toggle="collapse" href="#${id}" role="button" aria-expanded="false" aria-controls="${status}-${ip}" ></div>
-                        </th>
-                    
-                        <td>${name}</td>
-                        <td>${armario}</td>
-                        <td>${powerdb}</td>
-                        <td>${maxclients}</td>
-                        <td>${ip}</td>
-                        <td>
-                            <span id="configIcon" class="clickIcon">
-                                <a class="dropdown-item" href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#configModal">
-                                    <iconify-icon icon="vscode-icons:file-type-light-config" width="27" height="29"></iconify-icon>
-                                </a>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="clickIcon clickDelete" onclick="deleteOlt('${status}-${name}-${ip}')">
-                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalRemove">
-                                <iconify-icon icon="bx:trash" width="27" height="29"></iconify-icon>
-                            </span>
-                        </td>`
-
-    linha += `\n ${oltSlots}
-              </tr>`
-    
-    const tabela = document.querySelector('table tbody');
-    tabela.insertAdjacentHTML('beforeend', linha);
+                
+  let rowOLT = `<tr id="${statusClass}-${ip}">
+                                      <th scope="row">
+                                      <div class="${statusClass}" data-bs-toggle="collapse" href="#${id}" role="button" aria-expanded="false" aria-controls="${statusClass}-${ip}" ></div>
+                                      </th>
+                                  
+                                      <td>${name}</td>
+                                      <td>${armario}</td>
+                                      <td>${powerdb}</td>
+                                      <td>${maxclients}</td>
+                                      <td>${ip}</td>
+                                      <td>
+                                          <span id="configIcon" class="clickIcon">
+                                              <a class="dropdown-item" href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#configModal">
+                                                  <iconify-icon icon="vscode-icons:file-type-light-config" width="27" height="29"></iconify-icon>
+                                              </a>
+                                          </span>
+                                      </td>
+                                      <td>
+                                          <span class="clickIcon clickDelete" onclick="deleteOlt('${statusClass}-${name}-${ip}')">
+                                              <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalRemove">
+                                              <iconify-icon icon="bx:trash" width="27" height="29"></iconify-icon>
+                                          </span>
+                  </td>`
+  
+  rowOLT += rowSlots;
+  const tabela = document.querySelector('table tbody');
+  tabela.insertAdjacentHTML('beforeend', rowOLT);
 
 }
 

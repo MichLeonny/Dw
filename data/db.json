@@ -13,7 +13,7 @@
 
         },
         {
-            "status": 0,
+            "status": 1,
             "OltName": "OltB",
             "Armario": "POP MatrizB",
             "PowerdB": "+4dBm",
@@ -87,7 +87,19 @@
         }
                 
     ],
+    "OltB":
 
+    [
+        {
+            "slot": "0/10",
+            "status": 0,
+            "OnuDiscovery": "-",
+            "OnuProvisioned": "-",
+            "OnuOnline": "-",
+            "Options": ""
+        }
+    ],
+    
     "OltC":
 
     [
@@ -114,31 +126,6 @@
             "OnuProvisioned": 40,
             "OnuOnline": 24,	
             "Options": ""
-        },
-        {
-            "slot":	"0/16",
-            "status": 1,
-            "OnuDiscovery": 1,
-            "OnuProvisioned": 78,
-            "OnuOnline": 24,	
-            "Options": ""
-        },
-        {
-            "slot":	"0/10",
-            "status": 0,
-            "OnuDiscovery": "-",
-            "OnuProvisioned": 50,
-            "OnuOnline": 0,	
-            "Options": "-"
-        },
-        {
-            "slot":	"0/19",
-            "status": -1,
-            "OnuDiscovery": "-",
-            "OnuProvisioned": "-",
-            "OnuOnline": "-",
-            "Options": ""
-        }
-                
+        }       
     ]
 }
