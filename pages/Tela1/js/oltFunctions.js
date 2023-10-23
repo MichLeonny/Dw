@@ -1,10 +1,20 @@
 import states from './states.js'
 
-async function checkSlots(ip, oltID){
-    const url = `${ip}` + `/${oltID.OltID}`
+async function checkSlots(ip, olt){
+    const url = `${ip}` + `/olts/${olt.id}/slots` // Aqui a variavel url recebe normalmente: http://localhost:3000/olts/1/slots
     const response = await fetch(url)
-    return await response.json();
-   
+    return await response.json(); // A variavel teste ta armezando todos os ids: http://localhost:3000/olts/todososids/slots
+
+}
+
+function addCorret_slots(slots, OLTId){ // #Temporaria - perda de desempenho porque está buscando todos os slots ou 
+  var corretSlots = new Array ();
+  for (const slot of slots){
+    if (slot.OLTId == OLTId){
+      corretSlots.push(slot)
+    }
+  }  
+  return corretSlots
 }
 
 function add_slots(olt, slots){
@@ -64,7 +74,8 @@ async function add_olt(ipDB, olt){
   let rowSlots = ''
   
   if (states.checkStatus(olt.status) === 1){
-    const sloters = await checkSlots(ipDB, olt);
+    let sloters = await checkSlots(ipDB, olt);
+    sloters = addCorret_slots(sloters, olt.id); // #Temporaria
     const oltSlots = add_slots(olt, sloters);
     statusClass = 'statusOnline';
     

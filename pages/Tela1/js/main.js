@@ -6,7 +6,7 @@ async function main(ip){
 
     for (const olt of OLTS) {
         const status = Status.checkStatus(olt.status);
-        console.log(olt)  // Porque a tabela está preenchendo em ordem diferente
+        //console.log(olt)  // Duvida: Porque a tabela está preenchendo em ordem diferente
         oltFunction.add_olt(ip, olt);
 
     }
@@ -22,5 +22,5 @@ async function checkOLTsDB(ipDB){
 
 }
 
-const ipDB = 'http://localhost:3000'
+const ipDB = 'http://192.168.249.254:3000' //Duvida: Como criar variaveis ambiente para o projeto
 await main(ipDB)
