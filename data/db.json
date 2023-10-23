@@ -9,7 +9,8 @@
             "maxClients": 64,
             "ipAddress":"127.0.0.1",
             "Config": "",
-            "OltID": "OltA"
+            "OltID": "OltA",
+            "id": 1
 
         },
         {
@@ -20,7 +21,8 @@
             "maxClients": 128,
             "ipAddress": "127.0.0.2",
             "Config": "",
-            "OltID": "OltB"
+            "OltID": "OltB",
+            "id": 2
         },
         {
             "status": 1,
@@ -30,102 +32,113 @@
             "maxClients": 256,
             "ipAddress": "127.0.0.3",
             "Config": "",
-            "OltID": "OltC"
+            "OltID": "OltC",
+            "id": 3
         }
     ],
 
-    "OltA":
+    "SLOTS":
 
     [
         {
+            "OltID": "OltA",
             "slot":	"0/19",
             "status": 1,
             "OnuDiscovery": 1,
             "OnuProvisioned": 78,
             "OnuOnline": 24,	
-            "Options": ""
+            "Options": "",
+            "OLTId": 1
         },
         {
+            "OltID": "OltA",
             "slot":	"0/18",
             "status": 1,
             "OnuDiscovery": 0,
             "OnuProvisioned": 200,
             "OnuOnline": 100,	
-            "Options": ""
+            "Options": "",
+            "OLTId": 1
         },    
         {
+            "OltID": "OltA",
             "slot":	"0/17",
             "status": 1,
             "OnuDiscovery": 1,
             "OnuProvisioned": 500,
             "OnuOnline": 350,	
-            "Options": ""
+            "Options": "",
+            "OLTId": 1
         },
         {
+            "OltID": "OltA",
             "slot":	"0/16",
             "status": 1,
             "OnuDiscovery": 0,
             "OnuProvisioned": 78,
             "OnuOnline": 24,	
-            "Options": ""
+            "Options": "",
+            "OLTId": 1
         },
         {
+            "OltID": "OltA",
             "slot":	"0/15",
             "status": -1,
             "OnuDiscovery": "-",
             "OnuProvisioned": "-",
             "OnuOnline": "-",	
-            "Options": "-"
+            "Options": "-",
+            "OLTId": 1
         },
         {
+            "OltID": "OltA",
             "slot":	"0/19",
             "status": -1,
             "OnuDiscovery": "-",
             "OnuProvisioned": "-",
             "OnuOnline": "-",
-            "Options": ""
-        }
-                
-    ],
-    "OltB":
-
-    [
+            "Options": "",
+            "OLTId": 1
+        },
         {
+            "OltID": "OltB",
             "slot": "0/10",
             "status": 0,
             "OnuDiscovery": "-",
             "OnuProvisioned": "-",
             "OnuOnline": "-",
-            "Options": ""
-        }
-    ],
-    
-    "OltC":
-
-    [
+            "Options": "",
+            "OLTId": 2
+        },
         {
+            "OltID": "OltC",
             "slot":	"0/19",
             "status": 0,
             "OnuDiscovery": 2000,
             "OnuProvisioned": 100,
             "OnuOnline": 50,	
-            "Options": ""
+            "Options": "",
+            "OLTId": 3
         },
         {
+            "OltID": "OltC",
             "slot":	"0/1",
             "status": 1,
             "OnuDiscovery": 150,
             "OnuProvisioned": 200,
             "OnuOnline": 39,	
-            "Options": ""
+            "Options": "",
+            "OLTId": 3
         },    
         {
+            "OltID": "OltC",
             "slot":	"0/3",
             "status": 1,
             "OnuDiscovery": 80,
             "OnuProvisioned": 40,
             "OnuOnline": 24,	
-            "Options": ""
+            "Options": "",
+            "OLTId": 3
         }       
     ]
 }

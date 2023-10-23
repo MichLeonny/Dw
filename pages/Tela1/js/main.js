@@ -8,6 +8,7 @@ async function main(ip){
         const status = Status.checkStatus(olt.status);
         console.log(olt)  // Porque a tabela está preenchendo em ordem diferente
         oltFunction.add_olt(ip, olt);
+
     }
     
     window.deleteOlt = oltFunction.remove_olt;
