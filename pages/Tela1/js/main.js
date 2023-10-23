@@ -12,6 +12,7 @@ async function main(ip){
     }
     
     window.deleteOlt = oltFunction.remove_olt;
+    window.confirmRemove = oltFunction.confirmRemove;
 }
 
 async function checkOLTsDB(ipDB){

@@ -86,7 +86,7 @@ async function add_olt(ipDB, olt){
       statusClass = 'statusOffline';
     }
                 
-  let rowOLT = `<tr id="${statusClass}-${ip}">
+  let rowOLT = `<tr id="${statusClass}-${name}-${ip}">
                                       <th scope="row">
                                       <div class="${statusClass}" data-bs-toggle="collapse" href="#${id}" role="button" aria-expanded="false" aria-controls="${statusClass}-${ip}" ></div>
                                       </th>
@@ -118,36 +118,18 @@ async function add_olt(ipDB, olt){
 
 function remove_olt(rmdata){
     const oltdata = rmdata.split('-', 3)
-
-    // const modal_remove = `
-    //         <div class="modal fade" id="modalRemove" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    //             <div class="modal-dialog">
-    //                 <div class="modal-content">
-    //                     <div class="modal-header">
-    //                         <h1 class="modal-title fs-5" id="exampleModalLabel">Remove OLT</h1>
-    //                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    //                     </div>
-    //                     <div class="modal-body">
-    //                         <h5 text-center></h5>
-    //                     </div>
-    //                     <div class="modal-footer">
-    //                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="cancelRemove()">Cancel</button>
-    //                         <button type="button" class="btn btn-danger">Confirm</button>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>`
-    
-    // const body = document.querySelector('body');
-    // body.insertAdjacentHTML('beforeend', modal_remove);
     
     const modal_remove = document.getElementById('modalRemove');
-    const textoModal = modal_remove.querySelector('h5').innerHTML = "Deseja realmente remover a " + oltdata[1] + "?"
-    
-    const olt = document.getElementById(rmdata);
-    //olt.remove();
+    modal_remove.querySelector('h5').innerHTML = "Deseja realmente remover a " + oltdata[1] + "?";
+    const buttonConfirm = document.getElementById('buttonDeleteConfirm');
+    buttonConfirm.setAttribute('onclick', `confirmRemove("${rmdata}")`)
+
 
 }
 
+function confirmRemove(data){
+  const olt = document.getElementById(data)
+  olt.remove()
+}
 
-export default { add_olt, remove_olt, checkSlots };
+export default { add_olt, remove_olt, checkSlots, confirmRemove };
