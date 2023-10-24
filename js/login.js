@@ -49,7 +49,7 @@ function validateLogin(dataform, dbusers){
 }
 
 function logado(){
-    console.log("logado");
+    window.location.href= "./pages/Tela1/index.html"
 }
 
 function erroLogin(){
