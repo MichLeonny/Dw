@@ -97,7 +97,7 @@ async function add_olt(ipDB, olt){
                                       <td>${maxclients}</td>
                                       <td>${ip}</td>
                                       <td>
-                                          <span id="configIcon" class="clickIcon">
+                                          <span id="${statusClass}-${ip}" class="clickIcon" onclick="configsOLT()">
                                               <a class="dropdown-item" href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#configModal">
                                                   <iconify-icon icon="vscode-icons:file-type-light-config" width="27" height="29"></iconify-icon>
                                               </a>
