@@ -12,7 +12,8 @@ async function main(ip){
 
     }
     
-    window.addConfigsOLT = API.configsOLTadd;
+    window.addConfigsOLT = API.addOltConfigForm;
+    window.changeConfigsOLT = API.changeOltConfigForm;
     window.deleteOlt = oltFunction.remove_olt;
     window.configsOLT = oltFunction.configsOLT;
     window.confirmRemove = oltFunction.confirmRemove;
@@ -26,5 +27,5 @@ async function checkOLTsDB(ipDB){
 
 }
 
-const ipDB = 'http://143.208.202.11:3000' //Duvida: Como criar variaveis ambiente para o projeto
+const ipDB = 'http://192.168.249.254:3000' //Duvida: Como criar variaveis ambiente para o projeto
 await main(ipDB)

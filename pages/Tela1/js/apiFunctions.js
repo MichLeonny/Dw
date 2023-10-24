@@ -1,7 +1,7 @@
 import oltFunction from './oltFunctions.js';
 import states from './states.js';
 
-function configsOLTadd(event){
+function addOltConfigForm(event){
     event.preventDefault();
 
     const OltName = document.getElementById('modal-olt-name').value;
@@ -12,7 +12,7 @@ function configsOLTadd(event){
     const status = states.checkStatus(document.getElementById('flexSwitchCheckChecked').checked)
 
     const olt = { status, OltName, ipAddress, Armario, PowerdB, maxClients };
-    const addressDB = 'http://143.208.202.11:3000';
+    const addressDB = 'http://192.168.249.254:3000';
 
     oltFunction.add_olt(addressDB, olt);
     const configsform = document.getElementById('formConfigModal');
@@ -20,4 +20,11 @@ function configsOLTadd(event){
 
 }
 
-export default { configsOLTadd };
+function changeOltConfigForm(event){
+    event.preventDefault();
+    const configsform = document.getElementById('formConfigModal');
+    configsform.reset();
+    configsform.setAttribute("onsubmit","addConfigsOLT(event)");
+}
+
+export default { addOltConfigForm, changeOltConfigForm };

@@ -144,7 +144,11 @@ async function configsOLT(ipDB, oltid){
     document.getElementById('modal-olt-armario').value = config.Armario;
     document.getElementById('modal-olt-powerdb').value = config.PowerdB;
     document.getElementById('selected-maxclients-value').value = config.maxClients;
-
+    let form = document.getElementById('formConfigModal');
+    console.log(form);
+    document.getElementById('formConfigModal').setAttribute("onsubmit","changeConfigsOLT(event)"); // F. Complete
+    form = document.getElementById('formConfigModal');
+    console.log(form);
 
 }
 
