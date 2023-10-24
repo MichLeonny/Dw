@@ -26,5 +26,5 @@ async function checkOLTsDB(ipDB){
 
 }
 
-const ipDB = 'http://localhost:3000' //Duvida: Como criar variaveis ambiente para o projeto
+const ipDB = 'http://143.208.202.11:3000' //Duvida: Como criar variaveis ambiente para o projeto
 await main(ipDB)
