@@ -34,12 +34,13 @@
                           <a class="btn btn-light d-flex justify-content-center" href="#" data-bs-toggle="modal" data-bs-target="#configModal">Adicionar OLT</a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="d-flex justify-content-center" >
-                              <div>
-                                <button type="button" class="btn btn-outline-secondary" id="setupButton">Setup</button>
+                        <li>
+                          <div class="d-flex justify-content-evenly">
+                            <button type="button" class="btn btn-outline-secondary" id="setupButton">Setup</button>
+                              <a href="../../index.html">
                                 <button type="button" class="btn btn-outline-danger" id="logoutButton">Logout</button>
-                              </div>
-                            </a>
+                                </a>
+                          </div>
                         </li>
                       </ul>
                     </li>
@@ -80,36 +81,40 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form>
+                <form id="formConfigModal" onsubmit="addConfigsOLT(event)">
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">OLT Name</label>
-                    <input type="text" class="form-control" id="recipient-name" placeholder="OLT Name">
+                    <input type="text" class="form-control" id="modal-olt-name" placeholder="OLT Name">
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">IP Address</label>
-                    <input type="text" class="form-control" id="recipient-name" placeholder="127.0.0.1">
+                    <input type="text" class="form-control" id="modal-olt-ip" placeholder="127.0.0.1">
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Armario</label>
-                    <input type="text" class="form-control" id="recipient-name" placeholder="POP Matriz">
+                    <input type="text" class="form-control" id="modal-olt-armario" placeholder="POP Matriz">
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">PowerdB</label>
-                    <input type="text" class="form-control" id="recipient-name" placeholder="+5dBm">
+                    <input type="text" class="form-control" id="modal-olt-powerdb" placeholder="+5dBm">
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Max Clients</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select id="selected-maxclients-value" class="form-select" aria-label="Default select example">
                       <option value="64">64</option>
                       <option value="128" selected>128</option>
                       <option value="256">256</option>
                     </select>
                   </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Online</label>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Confirm</button>
+                  </div>
                 </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
               </div>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import oltFunction from './oltFunctions.js'
 import Status from './states.js'
+import API from './apiFunctions.js'
 
 async function main(ip){
     const OLTS = await checkOLTsDB(ip)
@@ -11,7 +12,9 @@ async function main(ip){
 
     }
     
+    window.addConfigsOLT = API.configsOLTadd;
     window.deleteOlt = oltFunction.remove_olt;
+    window.configsOLT = oltFunction.configsOLT;
     window.confirmRemove = oltFunction.confirmRemove;
 }
 
@@ -23,5 +26,5 @@ async function checkOLTsDB(ipDB){
 
 }
 
-const ipDB = 'http://192.168.249.254:3000' //Duvida: Como criar variaveis ambiente para o projeto
+const ipDB = 'http://localhost:3000' //Duvida: Como criar variaveis ambiente para o projeto
 await main(ipDB)

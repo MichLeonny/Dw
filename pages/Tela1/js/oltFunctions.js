@@ -17,9 +17,9 @@ function addCorret_slots(slots, OLTId){ // #Temporaria - perda de desempenho por
   return corretSlots
 }
 
-function add_slots(olt, slots){
+function add_slots(olt, slots, idtrRow){
     
-  let tableSecondaryHead = `<tr>
+  let tableSecondaryHead = `<tr id=${idtrRow}>
     <td colspan="10" class="hiddenRow">
       <div class="collapse multi-collapse" id="${olt.OltID}">
         <table class="table table-bordered table-sm table-hover text-center">
@@ -74,10 +74,11 @@ async function add_olt(ipDB, olt){
   let rowSlots = ''
   
   if (states.checkStatus(olt.status) === 1){
+    statusClass = 'statusOnline';
     let sloters = await checkSlots(ipDB, olt);
     sloters = addCorret_slots(sloters, olt.id); // #Temporaria
-    const oltSlots = add_slots(olt, sloters);
-    statusClass = 'statusOnline';
+    const idtrRow = `${statusClass}-${name}-${ip}`
+    const oltSlots = add_slots(olt, sloters, idtrRow);
     
     rowSlots = `\n ${oltSlots}
                   </tr>`
@@ -97,7 +98,7 @@ async function add_olt(ipDB, olt){
                                       <td>${maxclients}</td>
                                       <td>${ip}</td>
                                       <td>
-                                          <span id="${statusClass}-${ip}" class="clickIcon" onclick="configsOLT()">
+                                          <span id="${statusClass}-${ip}" class="clickIcon" onclick="configsOLT('${ipDB}','${olt.id}')">
                                               <a class="dropdown-item" href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#configModal">
                                                   <iconify-icon icon="vscode-icons:file-type-light-config" width="27" height="29"></iconify-icon>
                                               </a>
@@ -129,7 +130,22 @@ function remove_olt(rmdata){
 
 function confirmRemove(data){
   const olt = document.getElementById(data)
-  olt.remove()
+  olt.remove();
+  const oltslots = document.getElementById(data)
+  oltslots.remove();
 }
 
-export default { add_olt, remove_olt, checkSlots, confirmRemove };
+async function configsOLT(ipDB, oltid){
+  const url = ipDB + "/OLTS/" + oltid
+    const olt = await fetch(url)
+    const config = await olt.json();
+    document.getElementById('modal-olt-name').value = config.OltName;
+    document.getElementById('modal-olt-ip').value = config.ipAddress;
+    document.getElementById('modal-olt-armario').value = config.Armario;
+    document.getElementById('modal-olt-powerdb').value = config.PowerdB;
+    document.getElementById('selected-maxclients-value').value = config.maxClients;
+
+
+}
+
+export default { add_olt, remove_olt, checkSlots, confirmRemove, configsOLT };
