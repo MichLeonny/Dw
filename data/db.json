@@ -140,5 +140,25 @@
             "OnuOnline": 24,	
             "Options": ""
         }       
-    ]
+    ],
+
+    "Users":
+        [
+            {
+                "userLogin": "icaro",
+                "userPassword": "123",
+                "userEmail": "icaro@icaro.com.br"
+            },
+            {
+                "userLogin": "beto",
+                "userPassword": "321",
+                "userEmail": "beto@beto.com.br"
+            },
+            {
+                "userLogin": "michael",
+                "userPassword": "132",
+                "userEmail": "michael@michael.com.br"
+            }
+
+        ]
 }

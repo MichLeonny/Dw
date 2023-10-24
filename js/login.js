@@ -1,35 +1,57 @@
+var btnSignin = document.querySelector("#signin");
+var btnSignup = document.querySelector("#signup");
+
+var body = document.querySelector("body");
+
+
+btnSignin.addEventListener("click", function () {
+   body.className = "sign-in-js"; 
+});
+
+btnSignup.addEventListener("click", function () {
+    body.className = "sign-up-js";
+})
+
+function login(event){
+    event.preventDefault();
+    const email = document.getElementById('loginEmail').value
+    const pass = document.getElementById('loginPass').value
+    
+    data = { "email":email, "pass":pass };
+    users(data);
+
+}
+
 async function buscarnoBanco(){
-    const usuarios = await fetch('http://143.208.202.11:3000/users');
+    const usuarios = await fetch('http://192.168.249.254:3000/users');
     return await usuarios.json()
 
 
 }
 
-async function users(trylogin) {
+async function users(dataform) {
     const dbusers = await buscarnoBanco();
-    for (const user of dbusers){
-        validateLogin(trylogin, user)
-    }
-}
-
-function validateLogin(trylogin, dbusers){
-    if (trylogin.user === dbusers.login) {
-        if (trylogin.password === dbusers.passwd) {
-            console.log("logged");    
-        } else {
-            console.log("Not Logged")
-        }
+    if (validateLogin(dataform, dbusers)){
+        logado()
     } else {
-        console.log("Not Logged")
+        erroLogin();
     }
 }
 
+function validateLogin(dataform, dbusers){
 
-tryLogin = {
-        "user": "icaro",
-        "password": "1234"
+    for (const user of dbusers){
+        if ((dataform.email === user.userEmail) && (dataform.pass === user.userPassword)){
+            return true;
+        }
     }
+    return false;
+}
 
-console.log(tryLogin);
-users(tryLogin);
+function logado(){
+    console.log("logado");
+}
 
+function erroLogin(){
+    console.log("Não Logado");
+}
