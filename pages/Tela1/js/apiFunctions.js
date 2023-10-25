@@ -1,6 +1,8 @@
 import oltFunction from './oltFunctions.js';
 import states from './states.js';
 
+const urlDB = 'http://localhost:3000'
+
 function addOltConfigForm(event){
     event.preventDefault();
 
@@ -12,9 +14,8 @@ function addOltConfigForm(event){
     const status = states.checkStatus(document.getElementById('flexSwitchCheckChecked').checked)
 
     const olt = { status, OltName, ipAddress, Armario, PowerdB, maxClients };
-    const addressDB = 'http://192.168.0.106:3000';
 
-    oltFunction.add_olt(addressDB, olt);
+    oltFunction.add_olt(urlDB, olt);
     const configsform = document.getElementById('formConfigModal');
     configsform.reset();
 
