@@ -53,5 +53,14 @@ function logado(){
 }
 
 function erroLogin(){
-    console.log("Não Logado");
+    const tagError = document.getElementById('loginError');
+
+    const form = document.getElementById('loginForm');
+    const loginField = document.getElementById('loginEmail');
+    const passwField = document.getElementById('loginPass');
+    tagError.innerHTML = "Acesso Negado";
+}
+function formreset(){
+    document.getElementById('loginError').innerHTML = '';
+
 }
