@@ -91,6 +91,7 @@ async function newUserDB(userData){
       };
     
     const response = await fetch(url, config);
-    return await response.json();
+    const test = await response.json();
+    console.log(test);
     
 }
