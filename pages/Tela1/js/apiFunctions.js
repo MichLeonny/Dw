@@ -12,7 +12,7 @@ function addOltConfigForm(event){
     const status = states.checkStatus(document.getElementById('flexSwitchCheckChecked').checked)
 
     const olt = { status, OltName, ipAddress, Armario, PowerdB, maxClients };
-    const addressDB = 'http://192.168.249.254:3000';
+    const addressDB = 'http://192.168.0.106:3000';
 
     oltFunction.add_olt(addressDB, olt);
     const configsform = document.getElementById('formConfigModal');

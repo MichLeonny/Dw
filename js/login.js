@@ -1,3 +1,5 @@
+const dBServer = 'http://localhost:3000'
+
 var btnSignin = document.querySelector("#signin");
 var btnSignup = document.querySelector("#signup");
 
@@ -23,7 +25,8 @@ function login(event){
 }
 
 async function buscarnoBanco(){
-    const usuarios = await fetch('http://192.168.249.254:3000/users');
+    const url = `${dBServer}/users`
+    const usuarios = await fetch(url);
     return await usuarios.json()
 
 
@@ -60,7 +63,34 @@ function erroLogin(){
     const passwField = document.getElementById('loginPass');
     tagError.innerHTML = "Acesso Negado";
 }
-function formreset(){
-    document.getElementById('loginError').innerHTML = '';
+function clearError(){
+    const form = document.getElementById('loginError').innerText = '';
 
+}
+
+async function regUser(event){
+    event.preventDefault()
+    const userName = document.getElementById('nameRegForm').value;
+    const userEmail = document.getElementById('emailRegForm').value;
+    const userPassword = document.getElementById('passRegForm').value;
+
+    let newUser = { userName, userEmail, userPassword };
+
+    const teste = await newUserDB(newUser);
+}
+
+async function newUserDB(userData){
+
+    const url = `${dBServer}/Users`;
+    const config = {
+        method: "POST",
+        headers: {
+          'Content-Type': "application/json",
+        },
+        body: JSON.stringify(userData),
+      };
+    
+    const response = await fetch(url, config);
+    return await response.json();
+    
 }

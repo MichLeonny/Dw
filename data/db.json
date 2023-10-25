@@ -145,19 +145,24 @@
     "Users":
         [
             {
-                "userLogin": "icaro",
+                "userName": "icaro",
                 "userPassword": "123",
                 "userEmail": "icaro@icaro.com.br"
             },
             {
-                "userLogin": "beto",
+                "userName": "beto",
                 "userPassword": "321",
                 "userEmail": "beto@beto.com.br"
             },
             {
-                "userLogin": "michael",
+                "userName": "michael",
                 "userPassword": "132",
                 "userEmail": "michael@michael.com.br"
+            },            
+            {
+                "userName": "aluno",
+                "userPassword": "aluno",
+                "userEmail": "ifpb@ifpb.edu.br"
             }
 
         ]

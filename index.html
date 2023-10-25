@@ -21,20 +21,20 @@
             <div class="second-column">
                 <h2 class="title title-second">Registrar-se</h2>
                 <p class="description description-second">Registre-se com suas credenciais:</p>
-                <form class="form">
+                <form class="form" id="registryForm" onsubmit="regUser(event)">
                     <label class="label-input" for="">
                         <i class="far fa-user icon-modify"></i>
-                        <input type="text" placeholder="Name">
+                        <input id="nameRegForm" type="text" placeholder="Name">
                     </label>
                     
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="Email">
+                        <input id="emailRegForm" type="email" placeholder="Email">
                     </label>
                     
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" placeholder="Password">
+                        <input id="passRegForm" type="password" placeholder="Password">
                     </label>
                     
                     <button class="btn btn-second">Sing up</button>        
@@ -54,12 +54,12 @@
                 <form id="loginForm" class="form" onsubmit="login(event)">
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input id="loginEmail" type="email" placeholder="Email">
+                        <input id="loginEmail" onclick="clearError()" type="email" placeholder="Email">
                     </label>
                     
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input id="loginPass" type="password" placeholder="Password">
+                        <input id="loginPass" onclick="clearError()" type="password" placeholder="Password">
                     </label>
                         <h4 id="loginError" style="text-align: center; color: rgb(92, 17, 7);" ></h4>
                     <button class="btn btn-second">sign in</button>
