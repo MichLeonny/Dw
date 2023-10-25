@@ -15,7 +15,7 @@
         },
         {
             "id": 2,
-            "status": 1,
+            "status": 0,
             "OltName": "OltB",
             "Armario": "POP MatrizB",
             "PowerdB": "+4dBm",
