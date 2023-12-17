@@ -1,0 +1,70 @@
+@baseUrl=http://localhost:3000
+@createdHostId = {{createHost.response.body.$.id}}
+
+### Create Host
+
+# @name createUser
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Claro",
+  "email": "claro@claro.com.br",
+  "password": "claropassword"
+}
+
+### Create Olt
+
+# @name createHost
+POST {{baseUrl}}/olts
+Content-Type: application/json
+
+{
+  "status": false,
+  "OltName": "OltD",
+  "Armario": "POP MatrizD",
+  "PowerdB": "",
+  "maxClients": "",
+  "ipAddress": ""
+}
+
+
+### Create Slots
+# @name createSlots
+POST {{baseUrl}}/slots
+Content-Type: application/json
+
+{
+  "slotName": "0/3",
+  "OnuDiscovery": 80,
+  "OnuProvisioned": 40,
+  "OnuOnline": 24,
+  "oltId": 3
+}
+### Show All Slots
+
+# @name viewAllSlots
+GET {{baseUrl}}/olts
+
+### Get Slot ByID
+GET {{baseUrl}}/slots/1
+
+### Get All Users
+GET {{baseUrl}}/users
+
+### Get User ByID
+GET {{baseUrl}}/users/7
+
+### Update a host
+
+PUT {{baseUrl}}/users/{{createdHostId}}
+Content-Type: application/json
+
+{
+  "name": "Google Search",
+  "address": "www.google.com"
+}
+
+### Delete a host
+
+DELETE {{baseUrl}}/users/{{createdHostId}}
