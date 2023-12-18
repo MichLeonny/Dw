@@ -13,7 +13,7 @@ class HTTPError extends Error {
   }
 }
 
-// Criar Novo Usuario ()
+// Criar Novo Usuario (x)
 router.post('/users', async (req, res) => {
   const user = req.body;
 
@@ -26,7 +26,7 @@ router.post('/users', async (req, res) => {
   }
 });
 
-// Criar Olt Route ()
+// Criar Olt Route (x)
 router.post('/olts', async (req, res) => {
   const olt = req.body;
 
@@ -39,7 +39,7 @@ router.post('/olts', async (req, res) => {
   }
 });
 
-// Criar Slots Route ()
+// Criar Slots Route (x)
 router.post('/slots', async (req, res) => {
   const slots = req.body;
 
@@ -52,7 +52,7 @@ router.post('/slots', async (req, res) => {
   }
 });
 
-// Get All Slots ()
+// Get All Slots (x)
 router.get('/slots', async (req, res) => {
   const slots = await Slots.readAll();
 
@@ -102,14 +102,14 @@ router.get('/olts', async (req, res) => {
 
 })
 
-// Get User ByID ()
-router.get('/users/:id', async (req, res) => {
+// Get Olt ByID (x)
+router.get('/olts/:id', async (req, res) => {
   const id = Number(req.params.id);
 
-  const user = await Users.read(id);
+  const olt = await Olt.read(id);
 
-  if (id && user) {
-    res.json(user);
+  if (id && olt) {
+    res.json(olt);
   } else {
     throw new HTTPError('Invalid id to read host', 400);
   }
@@ -147,6 +147,16 @@ router.delete('/users/:id', async (req, res) => {
   const id = Number(req.params.id);
 
   if (id && (await Users.remove(id))) {
+    res.sendStatus(204);
+  } else {
+    throw new HTTPError('Id is required to remove host', 400);
+  }
+});
+
+// Delete Slot ByID (x)
+router.delete('/olts/:id/slots', async (req, res) => {
+  const id = Number(req.params.id);
+  if (id && (await Slots.remove(id))) {
     res.sendStatus(204);
   } else {
     throw new HTTPError('Id is required to remove host', 400);

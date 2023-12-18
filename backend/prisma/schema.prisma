@@ -31,7 +31,8 @@ model oltFound {
 
 model slotsOLT {
   id              Int     @id @default(autoincrement())
-  slotName        String
+  status          Int
+  slot            String
   OnuDiscovery    Int
   OnuProvisioned  Int
   OnuOnline       Int

@@ -35,7 +35,8 @@ POST {{baseUrl}}/slots
 Content-Type: application/json
 
 {
-  "slotName": "0/3",
+  "status": 1,
+  "slot": "0/3",
   "OnuDiscovery": 80,
   "OnuProvisioned": 40,
   "OnuOnline": 24,
@@ -44,7 +45,7 @@ Content-Type: application/json
 ### Show All Slots
 
 # @name viewAllSlots
-GET {{baseUrl}}/olts
+GET {{baseUrl}}/users/7
 
 ### Get Slot ByID
 GET {{baseUrl}}/olts/1/slots
@@ -67,4 +68,4 @@ Content-Type: application/json
 
 ### Delete a host
 
-DELETE {{baseUrl}}/users/{{createdHostId}}
+DELETE {{baseUrl}}/olts/10/slots

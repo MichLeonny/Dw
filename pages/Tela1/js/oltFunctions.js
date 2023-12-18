@@ -17,11 +17,11 @@ function addCorret_slots(slots, OLTId){ // #Temporaria - perda de desempenho por
   return corretSlots
 }
 
-function add_slots(olt, slots, idtrRow){
+function add_slots(olt, slots, idtrRow){  
     
   let tableSecondaryHead = `<tr id=${idtrRow}>
     <td colspan="10" class="hiddenRow">
-      <div class="collapse multi-collapse" id="${olt.OltID}">
+      <div class="collapse multi-collapse" id="${olt.OltName}">
         <table class="table table-bordered table-sm table-hover text-center">
           <thead>
             <tr>
@@ -69,7 +69,7 @@ async function add_olt(ipDB, olt){
   const powerdb = olt.PowerdB;
   const maxclients = olt.maxClients;
   let config = ''
-  const id = olt.OltID;
+  const id = olt.OltName;
   let statusClass = ''
   let rowSlots = ''
   
@@ -77,7 +77,6 @@ async function add_olt(ipDB, olt){
     statusClass = 'statusOnline';
     let sloters = await checkSlots(ipDB, olt);
     sloters = addCorret_slots(sloters, olt.id); // #Temporaria
-    console.log(sloters);
     const idtrRow = `${statusClass}-${name}-${ip}`
     const oltSlots = add_slots(olt, sloters, idtrRow);
     
@@ -138,18 +137,19 @@ function confirmRemove(data){
 
 async function configsOLT(ipDB, oltid){
   const url = ipDB + "/OLTS/" + oltid
-    const olt = await fetch(url)
-    const config = await olt.json();
-    document.getElementById('modal-olt-name').value = config.OltName;
-    document.getElementById('modal-olt-ip').value = config.ipAddress;
-    document.getElementById('modal-olt-armario').value = config.Armario;
-    document.getElementById('modal-olt-powerdb').value = config.PowerdB;
-    document.getElementById('selected-maxclients-value').value = config.maxClients;
-    let form = document.getElementById('formConfigModal');
-    console.log(form);
-    document.getElementById('formConfigModal').setAttribute("onsubmit","changeConfigsOLT(event)"); // F. Complete
-    form = document.getElementById('formConfigModal');
-    console.log(form);
+
+  const olt = await fetch(url)
+  const config = await olt.json();
+  document.getElementById('modal-olt-name').value = config.OltName;
+  document.getElementById('modal-olt-ip').value = config.ipAddress;
+  document.getElementById('modal-olt-armario').value = config.Armario;
+  document.getElementById('modal-olt-powerdb').value = config.PowerdB;
+  document.getElementById('selected-maxclients-value').value = config.maxClients;
+  let form = document.getElementById('formConfigModal');
+  console.log(form);
+  document.getElementById('formConfigModal').setAttribute("onsubmit","changeConfigsOLT(event)"); // F. Complete
+  form = document.getElementById('formConfigModal');
+  console.log(form);
 
 }
 

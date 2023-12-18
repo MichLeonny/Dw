@@ -52,6 +52,7 @@ async function remove(id) {
       id,
     },
   });
+  return true;
 }
 
 export default {

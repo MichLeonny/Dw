@@ -16,7 +16,7 @@ async function readAll() {
 }
 
 async function read(id) {
-  const host = await prisma.User.findFirst({
+  const host = await prisma.oltFound.findFirst({
     where: {
       id,
     },
