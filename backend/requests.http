@@ -8,9 +8,9 @@ POST {{baseUrl}}/users
 Content-Type: application/json
 
 {
-  "name": "Claro",
-  "email": "claro@claro.com.br",
-  "password": "claropassword"
+  "name": "ClaroTeste",
+  "email": "claro@claro2.com.br",
+  "password": "claro2password"
 }
 
 ### Create Olt
@@ -47,7 +47,7 @@ Content-Type: application/json
 GET {{baseUrl}}/olts
 
 ### Get Slot ByID
-GET {{baseUrl}}/slots/1
+GET {{baseUrl}}/olts/1/slots
 
 ### Get All Users
 GET {{baseUrl}}/users

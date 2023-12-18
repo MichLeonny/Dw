@@ -19,7 +19,7 @@ function login(event){
     const email = document.getElementById('loginEmail').value
     const pass = document.getElementById('loginPass').value
     
-    data = { "email":email, "pass":pass };
+    data = { email, pass };
     users(data);
 
 }
@@ -44,7 +44,7 @@ async function users(dataform) {
 function validateLogin(dataform, dbusers){
 
     for (const user of dbusers){
-        if ((dataform.email === user.userEmail) && (dataform.pass === user.userPassword)){
+        if ((dataform.email === user.email) && (dataform.pass === user.password)){
             return true;
         }
     }
@@ -70,23 +70,23 @@ function clearError(){
 
 async function regUser(event){
     event.preventDefault()
-    const userName = document.getElementById('nameRegForm').value;
-    const userEmail = document.getElementById('emailRegForm').value;
-    const userPassword = document.getElementById('passRegForm').value;
+    const name = document.getElementById('nameRegForm').value;
+    const email = document.getElementById('emailRegForm').value;
+    const password = document.getElementById('passRegForm').value;
 
-    let newUser = { userName, userEmail, userPassword };
+    let newUser = { name, email, password };
 
     const teste = await newUserDB(newUser);
 }
 
 async function newUserDB(userData){
 
-    const url = `${dBServer}/Users`;
+    const url = `${dBServer}/users`;
     const config = {
-        method: "POST",
         headers: {
-          'Content-Type': "application/json",
+            'Content-Type': "application/json",
         },
+        method: "post",
         body: JSON.stringify(userData),
       };
     

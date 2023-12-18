@@ -17,7 +17,7 @@ class HTTPError extends Error {
 router.post('/users', async (req, res) => {
   const user = req.body;
 
-  const newUser = await Host.create(user);
+  const newUser = await Users.create(user);
 
   if (newUser) {
     res.json(newUser);
@@ -74,7 +74,7 @@ router.get('/slots/:id', async (req, res) => {
 });
 
 // Get Slots ByOltID (x)
-router.get('/olts/slots/:id', async (req, res) => {
+router.get('/olts/:id/slots', async (req, res) => {
   const id = Number(req.params.id);
 
   const oltSlots = await Slots.readSlotsByOltID(id);

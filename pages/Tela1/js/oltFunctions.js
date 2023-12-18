@@ -10,7 +10,7 @@ async function checkSlots(ip, olt){
 function addCorret_slots(slots, OLTId){ // #Temporaria - perda de desempenho porque está buscando todos os slots ou 
   var corretSlots = new Array ();
   for (const slot of slots){
-    if (slot.OLTId == OLTId){
+    if (slot.oltId == OLTId){
       corretSlots.push(slot)
     }
   }  
@@ -77,6 +77,7 @@ async function add_olt(ipDB, olt){
     statusClass = 'statusOnline';
     let sloters = await checkSlots(ipDB, olt);
     sloters = addCorret_slots(sloters, olt.id); // #Temporaria
+    console.log(sloters);
     const idtrRow = `${statusClass}-${name}-${ip}`
     const oltSlots = add_slots(olt, sloters, idtrRow);
     
